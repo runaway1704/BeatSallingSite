@@ -19,7 +19,7 @@ class Beat(models.Model):
     """Биты"""
     name = models.CharField("Названиие", max_length=100)
     file = models.FileField("Файл", upload_to="Beats/")
-    price = models.DecimalField("Цена в долларах", max_digits=10, decimal_places=2)
+    price = models.DecimalField("Цена в долларах", max_digits=10, decimal_places=2, default=0)
     category = models.ForeignKey(Category, verbose_name="Категория", on_delete=models.SET_NULL, null=True)
     url = models.SlugField(max_length=160, unique=True)
     created = models.DateTimeField("Дата создания", auto_now_add=True)
@@ -32,4 +32,4 @@ class Beat(models.Model):
         verbose_name = "Бит"
         verbose_name_plural = "Биты"
         ordering = ("name",)
-        index_together = (("id", "slug"),)
+        index_together = (("id", "url"),)
