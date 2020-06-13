@@ -15,4 +15,4 @@ class MovieDetailView(DetailView):  # даёт возможность для mov
     """detail view to films"""
     model = Beat
     slug_field = "url"
-    template_name = "Pages/beat_detail.html"
+    # template_name = "Pages/beat_detail.html"
