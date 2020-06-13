@@ -11,8 +11,8 @@ class BeatListView(ListView):
      # template_name = "Pages/beat_list_view.html"
 
 
-class MovieDetailView(DetailView):  # даёт возможность для movie_detail.html использовать movie
+class BeatDetailView(DetailView):
     """detail view to films"""
-    model = Beat
+    model = Beat # даёт возможность для movie_detail.html использовать beat
     slug_field = "url"
     # template_name = "Pages/beat_detail.html"
