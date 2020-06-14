@@ -6,13 +6,12 @@ from .models import Beat
 
 
 class BeatListView(ListView):
-     model = Beat
-     queryset = Beat.objects.all()
-     # template_name = "Pages/beat_list_view.html"
+    model = Beat
+    queryset = Beat.objects.all()
+    template_name = "Pages/beat_list_view.html"
 
 
 class BeatDetailView(DetailView):
-    """detail view to films"""
-    model = Beat # даёт возможность для movie_detail.html использовать beat
+    model = Beat  # даёт возможность для movie_detail.html использовать beat
     slug_field = "url"
-    # template_name = "Pages/beat_detail.html"
+    template_name = "Pages/beat_detail.html"
