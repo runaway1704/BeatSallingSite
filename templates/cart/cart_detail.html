@@ -1,0 +1,34 @@
+{% extends "Beat/base.html" %}
+{% block title %}
+    Cart
+{% endblock %}
+
+
+
+{% block beat %}
+    <table class="table table-striped table-dark">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with item.beat as beat %}
+            <tr>
+                <th scope="row">{{ beat.id }}</th>
+                <td>{{ beat.name}}</td>
+                <td>{{ beat.price }}</td>
+                <td><a href="{% url "remove_from_cart" beat.id %}">Удолиц</a></td>
+            </tr>
+            {% endwith %}
+        {% endfor %}
+        </tbody>
+        <tr>
+            <td>В итоге{{ cart.get_total_price }}</td>
+        </tr>
+    </table>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "Beat/base.html" %}
+{% block title %}Главная страница{% endblock %}
+{% block beat %}
+    {% for beat in beat_list %}
+        <h3>{{ beat.name }}</h3>
+        <h5>{{ beat.category }}</h5>
+        <p>{{ beat.price }}</p>
+
+        <form action="{% url "add_to_cart" beat.id %}" method="post">
+            {{ cart_product_form }}
+            {% csrf_token %}
+            <input type="submit" value="Add to cart">
+        </form>
+    {% endfor %}
+
+{% endblock %}
