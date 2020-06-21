@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'Beat',
+    'cart',
+    
 ]
 
 MIDDLEWARE = [
@@ -71,6 +73,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'BeatSallingSite.wsgi.application'
+
+
+CART_SESSION_ID = 'cart'
 
 
 # Database
