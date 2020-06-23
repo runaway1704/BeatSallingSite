@@ -41,13 +41,14 @@ class Cart(object):
             item["price"] = Decimal(item["price"])
             yield item
 
-    # def __len__(self):
-    #     return sum(item for item in self.cart.values())
+    def __len__(self):
+        return len(self.cart.values())
 
     def get_total_price(self):
+        total_price = 0
         for item in self.cart.values():
-            return sum(Decimal(item["price"]))
-    # return sum(Decimal(item["price"] for item in self.cart.values()))
+            total_price += Decimal(item["price"])
+        return total_price
 
     def clear(self):
         """delete cart from session"""
