@@ -1,0 +1,20 @@
+{% extends "Beat/base.html" %}
+{% block title %}
+    создание заказа
+{% endblock %}
+{% block beat %}
+    <h3>Оформление заказа</h3>
+    <ul>
+        {% for item in cart %}
+            <li>
+                <p>{{ item.beat.name }} $ {{ item.beat.price }}</p>
+            </li>
+        {% endfor %}
+        <li>$ {{ cart.get_total_price }}</li>
+    </ul>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><input type="submit" value="Place order"></p>
+    </form>
+{% endblock %}
