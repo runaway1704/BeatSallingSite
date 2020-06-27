@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import OrderCreateForm
 from cart.cart import Cart
 from .models import OrderItem
+from .tasks import send_beat
 
 
 def create_order(request):
@@ -15,6 +16,7 @@ def create_order(request):
                                          price=item["price"],
                                          order=order)
             cart.clear()
+            send_beat(order.id)
             return render(request, "orders/order/created.html", {"order": order})
     else:
         form = OrderCreateForm
