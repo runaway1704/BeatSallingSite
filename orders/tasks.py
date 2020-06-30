@@ -5,7 +5,7 @@ from django.core.mail import send_mail, EmailMessage
 def send_beat(order_id):
     order = Order.objects.get(id=order_id)
     order_item = OrderItem.objects.filter(order=order)
-    subject = f"Заказ номер{order_id}"
+    subject = f"Заказ номер {order_id}"
     message = ""
     file_path = []
     for item in order_item:

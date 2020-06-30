@@ -7,7 +7,6 @@
     <table class="table table-striped table-dark">
         <thead>
         <tr>
-            <th scope="col">id</th>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
             <th scope="col">Remove</th>
@@ -17,7 +16,6 @@
         {% for item in cart %}
             {% with item.beat as beat %}
             <tr>
-                <th scope="row">{{ beat.id }}</th>
                 <td>{{ beat.name}}</td>
                 <td>{{ beat.price }}</td>
                 <td><a href="{% url "remove_from_cart" beat.id %}">Удолиц</a></td>
@@ -30,5 +28,7 @@
             <td>{{ cart|length }}</td>
         </tr>
     </table>
-    <a href="{% url "create_order" %}">зокозат</a>
+    {% if cart|length >= 1 %}
+        <a href="{% url "create_order" %}">зокозат</a>
+    {% endif %}
 {% endblock %}

@@ -29,5 +29,13 @@
         </library>
       </libraries>
     </data-source>
+    <data-source source="LOCAL" name="Django default" uuid="60dfde80-623c-4bdb-97c6-36623b48bd67">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/BeatSallingSite/settings.py</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Andrey\PycharmProjects\BeatSallingSite\db.sqlite3</jdbc-url>
+    </data-source>
   </component>
 </project>

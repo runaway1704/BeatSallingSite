@@ -3,6 +3,9 @@
     создание заказа
 {% endblock %}
 {% block beat %}
+    {% if cart|length == 0 %}
+        <h1>Сначала добавьте предметы в корзину</h1>
+    {% else %}
     <h3>Оформление заказа</h3>
     <ul>
         {% for item in cart %}
@@ -17,4 +20,5 @@
         {{ form.as_p }}
         <p><input type="submit" value="Place order"></p>
     </form>
+    {% endif %}
 {% endblock %}
