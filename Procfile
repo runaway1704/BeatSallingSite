@@ -1,1 +1,1 @@
-web: gunicorn BeatSallingSite.wsgi
+web: gunicorn BeatSallingSite.wsgi --log-file -
