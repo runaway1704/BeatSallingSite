@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,12 +21,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'pu0tgual2=%*b=csj)y7s5fb6i_mrl^d(%)1772kh_%37y_3+w'
-
+# SECRET_KEY = 'pu0tgual2=%*b=csj)y7s5fb6i_mrl^d(%)1772kh_%37y_3+w'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'pu0tgual2=%*b=csj)y7s5fb6i_mrl^d(%)1772kh_%37y_3+w')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+# DEBUG = True
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -51,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'BeatSallingSite.urls'
 
@@ -120,7 +125,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_HOST = 'https://d4663kmspf1sqa.cloudfront.net' if not DEBUG else ''
+STATIC_URL = STATIC_HOST + '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
@@ -135,3 +142,7 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "andreypoelsup@gmail.com"
 EMAIL_HOST_PASSWORD = "pupkin.com2015"
 EMAIL_PORT = 587
+
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+django_heroku.settings(locals())
