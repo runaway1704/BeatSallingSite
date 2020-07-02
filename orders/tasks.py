@@ -13,7 +13,7 @@ def send_beat(order_id):
         file = item.beat.file.path
         message += f"{name} \n"
         file_path.append(file)
-    email = EmailMessage(subject, message, "fred@example.com", [order.email])
+    email = EmailMessage(subject, message, "lex4_20@icloud.com", [order.email])
     for index in range(0, len(file_path)):
         email.attach_file(file_path[index])
     email.send(fail_silently=False)
