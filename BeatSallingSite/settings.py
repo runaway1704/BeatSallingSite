@@ -139,9 +139,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "andreypoelsup@gmail.com"
-EMAIL_HOST_PASSWORD = "pupkin.com2015"
+EMAIL_HOST = 'smtp.eu.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@mg.qpayinc.app'
+EMAIL_HOST_PASSWORD = 'b0d5f9170991a8488309440728dc872d-913a5827-5d9a58cb'
 EMAIL_PORT = 587
 
 
