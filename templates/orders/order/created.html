@@ -4,5 +4,7 @@
 {% endblock %}
 {% block beat %}
     <h3>Спасибо за заказ</h3>
-    <p>Ваш заказ {{ order.id }}. Ожидайте</p>
+    <p>Ваш заказ {{ order.id }}</p>
+    {{ html|safe }}
+
 {% endblock %}

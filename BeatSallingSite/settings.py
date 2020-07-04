@@ -20,11 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'pu0tgual2=%*b=csj)y7s5fb6i_mrl^d(%)1772kh_%37y_3+w'
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'pu0tgual2=%*b=csj)y7s5fb6i_mrl^d(%)1772kh_%37y_3+w')
+SECRET_KEY = 'pu0tgual2=%*b=csj)y7s5fb6i_mrl^d(%)1772kh_%37y_3+w'
+# SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'pu0tgual2=%*b=csj)y7s5fb6i_mrl^d(%)1772kh_%37y_3+w')
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+DEBUG = True
+# DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 ALLOWED_HOSTS = ['extorfinbeat.herokuapp.com', '127.0.0.1']
 
 # Application definition
@@ -145,3 +145,5 @@ EMAIL_HOST_PASSWORD = 'b0d5f9170991a8488309440728dc872d-913a5827-5d9a58cb'
 EMAIL_PORT = 587
 
 
+LIQPAY_PUBLIC_KEY = ""
+LIQPAY_PRIVATE_KEY = ""

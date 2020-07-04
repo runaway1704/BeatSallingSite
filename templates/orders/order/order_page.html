@@ -1,0 +1,13 @@
+{% extends "Beat/base.html" %}
+{% block title %}
+Страница заказа
+{% endblock %}
+{% block beat %}
+    Ваш заказ номер {{ order.id }}
+    содержит
+    {% for item in cart %}
+        {{ item.beat.name }} - {{ item.beat.price }}
+    {% endfor %}
+    <p>финальная цена - {{ total_price }}</p>
+
+{% endblock %}

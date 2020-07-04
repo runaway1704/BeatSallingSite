@@ -1,9 +1,9 @@
-from liqpay.liqpay import LiqPay
+from liqpay.liqpay3 import LiqPay
 from django.conf import settings
 
 
 def pay(total_price, order_id):
-    liqpay = LiqPay()
+    liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
     params = {
         'action': 'pay',
         'amount': f'{total_price}',
@@ -13,5 +13,7 @@ def pay(total_price, order_id):
         'version': '3',
         # 'server_url': 'https://test.com/billing/pay-callback/',  # url to callback view
     }
-    html = liqpay.cnb_form(params=params)
-    return html
+    # data = liqpay.cnb_data(params)
+    # signature = liqpay.cnb_signature(params)
+    html = liqpay.cnb_form(params)
+    return html  # data, signature
