@@ -57,7 +57,7 @@ def pay(request, order_id):
         'order_id': f'{order_id}',
         'version': '3',
         'sandbox': 0,  # sandbox mode, set to 1 to enable it
-        'server_url': 'http://127.0.0.1:8000/orders/pay/callback',  # url to callback view
+        'server_url': 'https://extorfinbeat.herokuapp.com/orders/pay/callback',  # url to callback view
     }
     signature = liqpay.cnb_signature(params)
     data = liqpay.cnb_data(params)
