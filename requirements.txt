@@ -11,6 +11,7 @@ future==0.18.2
 gunicorn==20.0.4
 idna==2.10
 kombu==4.6.11
+liqpay==1.0.1
 liqpay-python==1.0
 psycopg2==2.8.5
 pytz==2020.1
@@ -20,4 +21,3 @@ sqlparse==0.3.1
 urllib3==1.25.9
 vine==1.3.0
 whitenoise==5.1.0
-liqpay
