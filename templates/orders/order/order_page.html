@@ -3,11 +3,10 @@
 Страница заказа
 {% endblock %}
 {% block beat %}
-    Ваш заказ номер {{ order.id }}
-    содержит
+    Перейти к оплате:
     {% for item in cart %}
-        {{ item.beat.name }} - {{ item.beat.price }}
+        <p>{{ item.beat.name }} - {{ item.beat.price }}$</p>
     {% endfor %}
-    <p>финальная цена - {{ total_price }}</p>
-
+    <p>финальная цена - {{ cart.get_total_price }}$</p>
+<a href="{% url "pay" order.id %}">перейти к оплате</a>
 {% endblock %}
