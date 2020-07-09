@@ -1,8 +1,9 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic.base import View
+from django.views.generic.base import View, TemplateView
 
 from .forms import OrderCreateForm
 from cart.cart import Cart
@@ -27,14 +28,6 @@ def create_order(request):
             # cart.clear()
             # send_beat(order.id)
             # Order.objects.filter(id=order.id).update(paid=True)
-            # liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
-            # params = {'action': 'pay',
-            #           'amount': f'{total}',
-            #           'currency': 'USD',
-            #           'description': 'Payment for beat',
-            #           'order_id': f'{order.id}',
-            #           'version': '3'}
-            # html = liqpay.cnb_form(params=params)
             # pay_order(request, cart, order.id)
             return render(request, "orders/order/order_page.html", {
                 "order": order,
@@ -52,27 +45,32 @@ def pay(request, order_id):
     params = {
         'action': 'pay',
         'amount': f'{total}',
-        'currency': 'USD',
+        'currency': 'UAH',
         'description': 'Payment for clothes',
         'order_id': f'{order_id}',
         'version': '3',
-        'sandbox': 0,  # sandbox mode, set to 1 to enable it
-        'server_url': 'https://extorfinbeat.herokuapp.com/orders/pay/callback',  # url to callback view
+        'sandbox': 1,  # sandbox mode, set to 1 to enable it
+        'server_url': f'# https://extorfinbeat.herokuapp.com/orders/callback/{order_id}',  # url to callback view
     }
     signature = liqpay.cnb_signature(params)
     data = liqpay.cnb_data(params)
-    return render(request, "orders/order/pay.html", {'signature': signature, 'data': data})
+    return render(request, "orders/order/pay.html", {'signature': signature, 'data': data,
+                                                     'order_id': str(order_id)})
 
 
 @method_decorator(csrf_exempt, name='dispatch')
-class PayCallbackView(View):
-    def post(self, request, *args, **kwargs):
-        liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
-        data = request.POST.get('data')
-        signature = request.POST.get('signature')
-        sign = liqpay.str_to_sign(settings.LIQPAY_PRIVATE_KEY + data + settings.LIQPAY_PRIVATE_KEY)
-        if sign == signature:
-            print('CALLBACK IS VALID!')
-        response = liqpay.decode_data_from_str(data)
-        print(response)
-        return redirect("beat_list")
+def callback(request):
+    liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
+    data = request.POST.get('data')
+    signature = request.POST.get('signature')
+    print(signature)
+    i_d = request.POST.get("order_id")
+    print(i_d)
+    # sign = liqpay.str_to_sign(settings.LIQPAY_PRIVATE_KEY + data + settings.LIQPAY_PRIVATE_KEY)
+    # if sign == signature:
+    #
+    #     print('CALLBACK IS VALID!')
+    # response = liqpay.decode_data_from_str(data)
+    # print(response)
+    return HttpResponse()
+#

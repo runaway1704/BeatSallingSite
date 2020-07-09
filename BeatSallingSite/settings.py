@@ -137,13 +137,6 @@ STATICFILES_DIRS = [
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.eu.mailgun.org'
-EMAIL_HOST_USER = 'postmaster@mg.qpayinc.app'
-EMAIL_HOST_PASSWORD = 'b0d5f9170991a8488309440728dc872d-913a5827-5d9a58cb'
-EMAIL_PORT = 587
-
 
 LIQPAY_PUBLIC_KEY = "sandbox_i42132476024"
 LIQPAY_PRIVATE_KEY = "sandbox_w1fKiNET8VBdHBqAVk9ftCEO5jsQBIJkPndyRHjB"

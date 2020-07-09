@@ -12,7 +12,8 @@
             data: "{{ data }}",
             signature: "{{ signature }}",
             embedTo: "#liqpay_checkout",
-            mode: "embed" // embed || popup,
+            mode: "embed", // embed || popup,
+            order_id: "{{ order_id }}"
         }).on("liqpay.callback", function(data){
             console.log(data.status);
             console.log(data);
