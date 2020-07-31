@@ -10,8 +10,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Beat)
 class BeatAdmin(admin.ModelAdmin):
-    list_display = ("name", "url", "category", "price", "created", "updated",)
-    list_filter = ("created", "updated",)
+    list_display = ("name", "url", "category", "price", "created",)
+    list_filter = ("created",)
     list_editable = ("price", )
     prepopulated_fields = {"url": ("name",)}
 

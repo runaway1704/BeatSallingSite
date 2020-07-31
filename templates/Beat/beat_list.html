@@ -9,8 +9,9 @@
         <form action="{% url "add_to_cart" beat.id %}" method="post">
             {{ cart_product_form }}
             {% csrf_token %}
-            <input type="submit" value="Add to cart">
+            <input type="submit" value="Добавить в корзину">
         </form>
+        {% include "includes/pagination.html" %}
     {% endfor %}
 
 {% endblock %}

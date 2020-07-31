@@ -24,13 +24,13 @@ class Beat(models.Model):
     category = models.ForeignKey(Category, verbose_name="Категория", on_delete=models.SET_NULL, null=True)
     url = models.SlugField(max_length=160, unique=True)
     created = models.DateTimeField("Дата создания", auto_now_add=True)
-    updated = models.DateTimeField("Дата обновления", auto_now=True)
+    url_to_cloud = models.URLField("Ссылка на ФАЙЛ в облаке", max_length=200, default="")
 
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        return reverse("beat_detail", kwargs={"slug": self.url})
+    # def get_absolute_url(self):
+    #     return reverse("beat_detail", kwargs={"slug": self.url})
 
     class Meta:
         verbose_name = "Бит"

@@ -8,5 +8,5 @@
         <p>{{ item.beat.name }} - {{ item.beat.price }}$</p>
     {% endfor %}
     <p>финальная цена - {{ cart.get_total_price }}$</p>
-<a href="{% url "pay" order.id %}">перейти к оплате</a>
+<a href="{% url "pay" %}">перейти к оплате</a>
 {% endblock %}

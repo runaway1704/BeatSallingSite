@@ -15,7 +15,7 @@
         {% endfor %}
         <li>$ {{ cart.get_total_price }}</li>
     </ul>
-    <form action="." method="post">
+    <form action="{% url "create_order" %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <p><input type="submit" value="Оформить заказ"></p>

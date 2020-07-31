@@ -9,3 +9,4 @@ class BeatListView(ListView):
     model = Beat
     queryset = Beat.objects.all()
     template_name = "Beat/beat_list.html"
+    paginate_by = 3
