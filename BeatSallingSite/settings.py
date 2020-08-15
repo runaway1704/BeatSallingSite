@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'modeltranslation',
     'Beat',
     'cart',
     'orders',
@@ -129,15 +128,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-gettext = lambda s: s
-LANGUAGES = (
-    ('ru', gettext('Russia')),
-    ('en', gettext('English')),
-)
-
-LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale'),
-)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

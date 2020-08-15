@@ -21,14 +21,11 @@ from django.urls import path, include
 
 urlpatterns = [
     path('kkillthe/', admin.site.urls),
-    path('i18n/', include('django.conf.urls.i18n')),
-]
-
-urlpatterns += i18n_patterns(
     path('orders/', include("orders.urls")),
     path('cart', include("cart.urls")),
     path('', include("Beat.urls")),
-)
+]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

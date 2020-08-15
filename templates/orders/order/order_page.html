@@ -4,10 +4,10 @@
 Страница заказа
 {% endblock %}
 {% block beat %}
-    <p>{% trans "Перейти к оплате следующих предметов:" %}</p>
+    <p>Go to pay for the following items:</p>
     {% for item in cart %}
         <p>{{ item.beat.name }} - {{ item.beat.price }}$</p>
     {% endfor %}
-    <p>{% trans "финальная цена - " %}{{ cart.get_total_price }}$</p>
-<a href="{% url "pay" %}">{% trans "Перейти к оплате" %}</a>
+    <p>Final price - {{ cart.get_total_price }}$</p>
+<a href="{% url "pay" %}">Pay</a>
 {% endblock %}

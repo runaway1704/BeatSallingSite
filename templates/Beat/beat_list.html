@@ -1,6 +1,5 @@
 {% extends "Beat/base.html" %}
-{% load i18n %}
-{% block title %}Главная страница{% endblock %}
+{% block title %}Main page{% endblock %}
 {% block beat %}
     {% include "includes/switch_lang.html" %}
     {% for beat in beat_list %}
@@ -11,9 +10,8 @@
             <source src="{{ beat.file.url }}">
         </audio>
         <form action="{% url "add_to_cart" beat.id %}" method="post">
-            {{ cart_product_form }}
             {% csrf_token %}
-            <button type="submit">Добавить в корзину</button>
+            <button type="submit">Add to cart</button>
         </form>
         {% include "includes/pagination.html" %}
     {% endfor %}

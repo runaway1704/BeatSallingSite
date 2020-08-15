@@ -5,9 +5,9 @@
 {% endblock %}
 {% block beat %}
     {% if cart|length == 0 %}
-        <h1>{% trans "Сначала добавьте предметы в корзину" %}</h1>
+        <h1>First add items to cart</h1>
     {% else %}
-        <h3>{% trans "Оформление заказа" %}</h3>
+        <h3>Checkout</h3>
         <ul>
             {% for item in cart %}
                 <li>
@@ -21,7 +21,7 @@
             <div class="input-group">
                 {{ form.as_p }}
             </div>
-            <p><input type="submit" value={% trans "Оформить заказ" %}></p>
+            <p><input type="submit" value="Checkout"></p>
         </form>
     {% endif %}
 {% endblock %}

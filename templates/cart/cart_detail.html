@@ -26,11 +26,18 @@
         {% endfor %}
         </tbody>
         <tr>
-            <td>{% trans "В итоге - "%}{{ cart.get_total_price }}$</td>
-            <td>{% trans "Биты - "%} {{ cart|length }}</td>
+            <td>In total - {{ cart.get_total_price }}$</td>
+            <td>
+                {% if cart|length == 1%}
+                    Beat - {{ cart|length }}
+                {% else %}
+                    Beats - {{ cart|length }}
+                {% endif %}
+
+            </td>
         </tr>
     </table>
     {% if cart|length >= 1 %}
-        <a href="{% url "create_order" %}">{% trans "Заказать"%}</a>
+        <a href="{% url "create_order" %}">Checkout</a>
     {% endif %}
 {% endblock %}

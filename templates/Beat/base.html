@@ -1,10 +1,12 @@
 {% extends "base.html" %}
-{% load i18n %}
 {% block content %}
     {% if cart|length > 0 %}
-        <p>{% trans "Ваша корзина:" %} <a href="{% url "cart_detail" %}">{{ cart|length }}, {{ cart.get_total_price }}</a> </p>
+        <p>Your cart: <a href="{% url "cart_detail" %}">{% if cart|length > 1 %}
+        {{ cart|length }} items, total price - {{ cart.get_total_price }}
+            {% else %}
+            {{ cart|length }} item, total price - {{ cart.get_total_price }}
+        {% endif %}</a></p>
     {% endif %}
 {% block beat %}
-
 {% endblock beat %}
 {% endblock content %}
