@@ -1,15 +1,17 @@
 {% extends "Beat/base.html" %}
+{% load i18n %}
 {% block title %}
     Cart
 {% endblock %}
 
 {% block beat %}
+    {% include "includes/switch_lang.html" %}
     <table class="table table-striped table-dark">
         <thead>
         <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Remove</th>
+            <th scope="col">{% trans "Название"%}</th>
+            <th scope="col">{% trans "Цена"%}</th>
+            <th scope="col">{% trans "Удалить"%}</th>
         </tr>
         </thead>
         <tbody>
@@ -18,17 +20,17 @@
             <tr>
                 <td>{{ beat.name}}</td>
                 <td>{{ beat.price }}</td>
-                <td><a href="{% url "remove_from_cart" beat.id %}">Удолиц</a></td>
+                <td><a href="{% url "remove_from_cart" beat.id %}">{% trans "Удалить"%}</a></td>
             </tr>
             {% endwith %}
         {% endfor %}
         </tbody>
         <tr>
-            <td>В итоге{{ cart.get_total_price }}</td>
-            <td>{{ cart|length }}</td>
+            <td>{% trans "В итоге - "%}{{ cart.get_total_price }}$</td>
+            <td>{% trans "Биты - "%} {{ cart|length }}</td>
         </tr>
     </table>
     {% if cart|length >= 1 %}
-        <a href="{% url "create_order" %}">зокозат</a>
+        <a href="{% url "create_order" %}">{% trans "Заказать"%}</a>
     {% endif %}
 {% endblock %}

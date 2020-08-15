@@ -1,11 +1,9 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block content %}
     {% if cart|length > 0 %}
-        <p>Ваша корзина: <a href="{% url "cart_detail" %}">{{ cart|length }}, {{ cart.get_total_price }}</a> </p>
+        <p>{% trans "Ваша корзина:" %} <a href="{% url "cart_detail" %}">{{ cart|length }}, {{ cart.get_total_price }}</a> </p>
     {% endif %}
-<div>
-    {% include "includes/sidebar.html" %}
-</div>
 {% block beat %}
 
 {% endblock beat %}

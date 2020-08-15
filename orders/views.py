@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.utils.decorators import method_decorator
@@ -9,7 +8,6 @@ from .forms import OrderCreateForm
 from cart.cart import Cart
 from .models import OrderItem, Order
 from .tasks import send_beat
-from django.views.decorators.http import require_http_methods
 from liqpay.liqpay3 import LiqPay
 
 order_id = 0  # номер заказа вынес сюда, т.к. надо его использовать во всех вьюхах
@@ -56,7 +54,9 @@ def pay(request):
             'order_id': f'{order_id}',
             'version': '3',
             'sandbox': 1,  # sandbox mode, set to 1 to enable it
-            'server_url': 'https://extorfinbeat.herokuapp.com/orders/callback/',  # url to callback view
+            # 'server_url': 'https://extorfinbeat.herokuapp.com/en/orders/callback/',  # url to callback view
+            'server_url': 'http://127.0.0.1:8000/en/orders/callback',
+            "result_url": 'http://127.0.0.1:8000/en/orders/callback'
         }
         signature = liqpay.cnb_signature(params)
         data = liqpay.cnb_data(params)
@@ -94,14 +94,14 @@ class PayCallbackView(View):
             liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
             data = request.POST.get('data')
             signature = request.POST.get('signature')
-            print(data, signature)
+            # if data and signature:
             cart.clear()
             send_beat(order_id)
             Order.objects.filter(id=order_id).update(paid=True)
             # sign = liqpay.str_to_sign(settings.LIQPAY_PRIVATE_KEY + data + settings.LIQPAY_PRIVATE_KEY)
             # if sign == signature:
             #     print('callback is valid')
-        return redirect("beat_list")
+            return redirect("beat_list")
 
     def get(self, request, *args, **kwargs):
 
@@ -112,7 +112,7 @@ class PayCallbackView(View):
             liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
             data = request.GET.get('data')
             signature = request.GET.get('signature')
-            print(data, signature)
+            # print(data, signature)
             cart.clear()
             send_beat(order_id)
             Order.objects.filter(id=order_id).update(paid=True)

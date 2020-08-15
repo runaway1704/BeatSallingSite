@@ -1,24 +1,27 @@
 {% extends "Beat/base.html" %}
+{% load i18n static %}
 {% block title %}
-    создание заказа
+    Создание заказа
 {% endblock %}
 {% block beat %}
     {% if cart|length == 0 %}
-        <h1>Сначала добавьте предметы в корзину</h1>
+        <h1>{% trans "Сначала добавьте предметы в корзину" %}</h1>
     {% else %}
-    <h3>Оформление заказа</h3>
-    <ul>
-        {% for item in cart %}
-            <li>
-                <p>{{ item.beat.name }} $ {{ item.beat.price }}</p>
-            </li>
-        {% endfor %}
-        <li>$ {{ cart.get_total_price }}</li>
-    </ul>
-    <form action="{% url "create_order" %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <p><input type="submit" value="Оформить заказ"></p>
-    </form>
+        <h3>{% trans "Оформление заказа" %}</h3>
+        <ul>
+            {% for item in cart %}
+                <li>
+                    <p>{{ item.beat.name }} $ {{ item.beat.price }}</p>
+                </li>
+            {% endfor %}
+            <li>{{ cart.get_total_price }} $</li>
+        </ul>
+        <form action="{% url "create_order" %}" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                {{ form.as_p }}
+            </div>
+            <p><input type="submit" value={% trans "Оформить заказ" %}></p>
+        </form>
     {% endif %}
 {% endblock %}
