@@ -80,6 +80,10 @@ WSGI_APPLICATION = 'BeatSallingSite.wsgi.application'
 
 CART_SESSION_ID = 'cart'
 
+
+TRANSLATABLE_MODEL_MODULES = []
+
+
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
