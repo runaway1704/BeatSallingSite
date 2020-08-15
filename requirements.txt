@@ -15,7 +15,7 @@ gunicorn==20.0.4
 idna==2.10
 kombu==4.6.11
 liqpay-python @ git+https://github.com/liqpay/sdk-python@f3a81847f2b518c3936461880e0451eb02f33b25
-https://github.com/intelligenia/modeltranslation.git
+modeltranslation @ git+https://github.com/intelligenia/modeltranslation.git
 psycopg2==2.8.5
 pytz==2020.1
 redis==3.5.3
